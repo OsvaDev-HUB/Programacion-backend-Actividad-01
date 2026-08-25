@@ -80,11 +80,13 @@ img { display: block; max-width: 100%; }
 .world-tags span { padding: 10px 14px; border: 1px solid var(--line); color: var(--gold-light); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; }
 
 .faction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.faction-card { min-height: 300px; padding: 34px; background: var(--surface); border: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; transition: border-color .2s ease, background .2s ease; }
+.faction-card { min-height: 300px; padding: 34px; position: relative; overflow: hidden; background: var(--surface); border: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; isolation: isolate; transition: border-color .2s ease, background .2s ease; }
 .faction-card:hover { background: var(--surface-light); border-color: var(--line); }
 .card-number { color: var(--gold); font-size: 11px; letter-spacing: .12em; }
+.faction-emblem { width: 132px; height: 132px; position: absolute; z-index: -1; top: 24px; right: 30px; object-fit: contain; object-position: center; opacity: .9; filter: drop-shadow(0 12px 18px rgba(0,0,0,.5)); transition: opacity var(--motion-base) ease, transform var(--motion-base) var(--ease-out), filter var(--motion-base) ease; }
+.faction-emblem--alliance { width: 118px; }
 .faction-card h3 { margin: auto 0 18px; color: var(--white); font: 600 38px/1 var(--display); }
-.faction-card p { max-width: 390px; margin: 0 0 25px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.faction-card p { max-width: 390px; margin: 0 0 25px; position: relative; z-index: 1; color: var(--muted); font-size: 13px; line-height: 1.7; }
 .faction-card a { align-self: flex-start; color: var(--gold-light); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
 .faction-card a span { margin-left: 10px; }
 
@@ -115,6 +117,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-light); ou
 .hero-visual:hover .hero-character { transform: scale(1.018); }
 .faction-card { transition: transform var(--motion-base) var(--ease-out), border-color var(--motion-base) ease, background var(--motion-base) ease; }
 .faction-card:hover { transform: translateY(-5px); }
+.faction-card:hover .faction-emblem { opacity: 1; transform: translateY(-3px) scale(1.04); filter: drop-shadow(0 16px 22px rgba(0,0,0,.65)); }
 .faction-card a { transition: color var(--motion-fast) ease, transform var(--motion-fast) ease; }
 .faction-card a:hover { color: var(--white); }
 .world-tags span { transition: color var(--motion-fast) ease, background var(--motion-fast) ease, border-color var(--motion-fast) ease; }
@@ -168,7 +171,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-light); ou
     .hero-visual { height: 315px; min-height: 0; }
     .hero-character { max-height: 315px; }
     .section h2, .final-cta h2 { font-size: 40px; }
-    .faction-card { min-height: 270px; }
+    .faction-card { min-height: 270px; padding: 28px; }
+    .faction-emblem { width: 104px; height: 104px; top: 22px; right: 24px; }
+    .faction-emblem--alliance { width: 92px; }
     .site-footer p:nth-child(2) { display: none; }
 }
 

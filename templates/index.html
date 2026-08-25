@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>html,body{margin:0;background:#050505!important;color:#f3f1ea}</style>
-    <link rel="stylesheet" href="{% static 'styles.css' %}?v=7">
+    <link rel="stylesheet" href="{% static 'styles.css' %}?v=8">
 </head>
 <body>
     <header class="site-header">
@@ -66,14 +66,16 @@
         <section class="section factions" id="facciones" data-reveal>
             <p class="section-label">02 / Elige tu facción</p>
             <div class="faction-grid" data-stagger>
-                <article class="faction-card">
+                <article class="faction-card faction-card--horde">
                     <span class="card-number">01</span>
+                    <img class="faction-emblem faction-emblem--horde" src="{% static 'img/world-of-warcraft-horde.png' %}" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async">
                     <h3>Horda</h3>
                     <p>Fuerza, honor y libertad. Pelea por un lugar en un mundo que nunca regaló nada.</p>
                     <a href="#jugar">Por la Horda <span aria-hidden="true">↗</span></a>
                 </article>
-                <article class="faction-card">
+                <article class="faction-card faction-card--alliance">
                     <span class="card-number">02</span>
+                    <img class="faction-emblem faction-emblem--alliance" src="{% static 'img/320px-AllianceLogo.webp' %}" alt="" aria-hidden="true" width="320" height="403" loading="lazy" decoding="async">
                     <h3>Alianza</h3>
                     <p>Valor, tradición y justicia. Protege Azeroth junto a sus grandes campeones.</p>
                     <a href="#jugar">Por la Alianza <span aria-hidden="true">↗</span></a>
