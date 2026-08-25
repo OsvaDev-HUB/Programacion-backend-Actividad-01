@@ -1,0 +1,105 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Panel del jugador de World of Warcraft.">
+    <title>Panel de {{ player.display_name }} — World of Warcraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>html,body{margin:0;background:#080808!important;color:#f3f1ea}</style>
+    <link rel="stylesheet" href="{% static 'account.css' %}?v=3">
+</head>
+<body class="dashboard-page" data-page="dashboard">
+    <div class="dashboard-shell">
+        <aside class="sidebar">
+            <a href="{% url 'home' %}" aria-label="Volver al sitio principal">
+                <img src="{% static 'img/World-of-Warcraft-Logo.png' %}" alt="World of Warcraft" class="dashboard-logo" width="3840" height="2160">
+            </a>
+
+            <div class="player-mini">
+                <span class="avatar">{{ player.initials }}</span>
+                <div>
+                    <strong>{{ player.display_name }}</strong>
+                    <small>{{ player.class }}</small>
+                </div>
+            </div>
+
+            <nav class="dashboard-nav" aria-label="Navegación del panel">
+                <a class="active" href="#resumen"><span>01</span> Resumen</a>
+                <a href="#misiones"><span>02</span> Misiones</a>
+                <a href="#actividad"><span>03</span> Actividad</a>
+                <a href="{% url 'home' %}"><span>04</span> Sitio principal</a>
+            </nav>
+
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit">Cerrar sesión <span aria-hidden="true">↗</span></button>
+            </form>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header" id="resumen" data-entrance>
+                <div>
+                    <p class="account-label">Panel de jugador</p>
+                    <h1>Bienvenido, {{ player.display_name }}.</h1>
+                </div>
+                <span class="online-status"><i></i>{{ player.status }}</span>
+            </header>
+
+            <section class="character-card" data-entrance data-entrance-delay>
+                <div class="character-main">
+                    <span class="level-badge">Nivel {{ player.level }}</span>
+                    <h2>{{ player.class }}</h2>
+                    <p>{{ player.race }} · {{ player.faction }}</p>
+                </div>
+                <div class="character-details">
+                    <div><span>Reino</span><strong>{{ player.realm }}</strong></div>
+                    <div><span>Hermandad</span><strong>{{ player.guild }}</strong></div>
+                </div>
+                <div class="level-progress">
+                    <div><span>Progreso del personaje</span><strong>{{ player.progress }}%</strong></div>
+                    <div class="progress-track" role="progressbar" aria-label="Progreso del personaje" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ player.progress }}"><span data-progress-bar style="width: {{ player.progress }}%"></span></div>
+                </div>
+            </section>
+
+            <section class="stats-grid" aria-label="Estadísticas del jugador" data-reveal data-stagger>
+                <article><span>Logros</span><strong>{{ player.stats.achievements }}</strong></article>
+                <article><span>Misiones completadas</span><strong>{{ player.stats.completed_quests }}</strong></article>
+                <article><span>Monturas</span><strong>{{ player.stats.mounts }}</strong></article>
+                <article><span>Tiempo jugado</span><strong>{{ player.stats.play_time }}</strong></article>
+            </section>
+
+            <div class="dashboard-content-grid">
+                <section class="dashboard-panel" id="misiones" data-reveal>
+                    <div class="panel-heading">
+                        <div><p class="account-label">En progreso</p><h2>Misiones activas</h2></div>
+                        <span>{{ player.quests|length }} misiones</span>
+                    </div>
+
+                    <div class="quest-list">
+                        {% for quest in player.quests %}
+                            <article class="quest-item">
+                                <div class="quest-title"><span>0{{ forloop.counter }}</span><div><h3>{{ quest.title }}</h3><p>{{ quest.zone }}</p></div></div>
+                                <div class="quest-progress"><strong>{{ quest.progress }}%</strong><div role="progressbar" aria-label="Progreso de {{ quest.title }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ quest.progress }}"><span data-progress-bar style="width: {{ quest.progress }}%"></span></div></div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="dashboard-panel activity-panel" id="actividad" data-reveal>
+                    <div class="panel-heading"><div><p class="account-label">Registro</p><h2>Actividad reciente</h2></div></div>
+                    <ol class="activity-list">
+                        {% for item in player.recent_activity %}
+                            <li><span>{{ forloop.counter }}</span><p>{{ item }}</p></li>
+                        {% endfor %}
+                    </ol>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="{% static 'account.js' %}?v=1"></script>
+</body>
+</html>

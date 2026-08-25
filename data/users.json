@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "username": "illidan",
+    "password_hash": "pbkdf2_sha256$1500000$s2WViqydRd4PoQpGsXmykI$1mkS4ojSbN+0uisT6KwEybmgGUP3s0oaXPNHCocsbBI=",
+    "display_name": "Illidan Tempestira",
+    "email": "illidan@azeroth.test",
+    "initials": "IT",
+    "status": "En línea",
+    "faction": "Renegados",
+    "race": "Elfo de la noche",
+    "class": "Cazador de demonios",
+    "level": 90,
+    "realm": "Ragnaros",
+    "guild": "Guardianes de Azeroth",
+    "progress": 78,
+    "stats": {
+      "achievements": 248,
+      "completed_quests": 1247,
+      "mounts": 67,
+      "play_time": "386 h"
+    },
+    "quests": [
+      {
+        "title": "El llamado de Azeroth",
+        "zone": "Valdrakken",
+        "progress": 80
+      },
+      {
+        "title": "Sombras sobre Kalimdor",
+        "zone": "Costa Oscura",
+        "progress": 45
+      },
+      {
+        "title": "Honor entre campeones",
+        "zone": "Orgrimmar",
+        "progress": 20
+      }
+    ],
+    "recent_activity": [
+      "Completaste la mazmorra Cámara de los Guardianes.",
+      "Obtuviste el logro Explorador de las Islas Abruptas.",
+      "Tu hermandad alcanzó el nivel 18."
+    ]
+  }
+]
