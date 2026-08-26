@@ -2,7 +2,7 @@
   {
     "id": 1,
     "username": "illidan",
-    "password_hash": "pbkdf2_sha256$1500000$s2WViqydRd4PoQpGsXmykI$1mkS4ojSbN+0uisT6KwEybmgGUP3s0oaXPNHCocsbBI=",
+    "password": "Azeroth2026",
     "display_name": "Illidan Tempestira",
     "email": "illidan@azeroth.test",
     "initials": "IT",

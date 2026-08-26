@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 
 from django.conf import settings
-from django.contrib.auth.hashers import check_password
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -61,7 +60,7 @@ def login_view(request):
         password = request.POST.get('password', '')
         user = _find_user(username)
 
-        if user and check_password(password, user.get('password_hash', '')):
+        if user and password == user.get('password', ''):
             request.session.flush()
             request.session['username'] = user['username']
             return redirect(next_url)
@@ -84,7 +83,7 @@ def dashboard(request):
         request.session.flush()
         return redirect(f"{reverse('login')}?next={reverse('dashboard')}")
 
-    safe_user = {key: value for key, value in user.items() if key != 'password_hash'}
+    safe_user = {key: value for key, value in user.items() if key != 'password'}
     return render(request, 'dashboard.html', {'player': safe_user})
 
 
