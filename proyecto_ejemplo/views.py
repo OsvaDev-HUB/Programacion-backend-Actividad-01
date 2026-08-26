@@ -84,7 +84,23 @@ def dashboard(request):
         return redirect(f"{reverse('login')}?next={reverse('dashboard')}")
 
     safe_user = {key: value for key, value in user.items() if key != 'password'}
-    return render(request, 'dashboard.html', {'player': safe_user})
+    has_character = all(
+        safe_user.get(field)
+        for field in ('display_name', 'class', 'race', 'level')
+    )
+    account_name = safe_user.get('display_name') or safe_user['username']
+    account_initials = safe_user.get('initials') or safe_user['username'][:2].upper()
+
+    return render(
+        request,
+        'dashboard.html',
+        {
+            'player': safe_user,
+            'has_character': has_character,
+            'account_name': account_name,
+            'account_initials': account_initials,
+        },
+    )
 
 
 @require_POST

@@ -126,12 +126,17 @@ button, input { font: inherit; }
 .activity-list li { padding: 17px 0; display: grid; grid-template-columns: 24px 1fr; gap: 11px; border-top: 1px solid var(--line); }
 .activity-list span { color: var(--gold); font-size: 9px; }
 .activity-list p { margin: 0; color: #b0aca3; font-size: 11px; line-height: 1.6; }
+.empty-characters { min-height: 360px; padding: 60px 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(120deg, #15130d 0%, #0e0e0e 52%, #0a0a0a 100%); border: 1px solid var(--gold-line); }
+.empty-characters-icon { width: 58px; height: 58px; margin-bottom: 28px; display: grid; place-items: center; color: var(--gold-light); border: 1px solid var(--gold-line); font: 600 22px var(--display); }
+.empty-characters .account-label { margin-bottom: 12px; }
+.empty-characters h2 { margin: 0 0 12px; font: 600 clamp(25px, 4vw, 36px) var(--display); letter-spacing: -.03em; }
+.empty-characters > p:last-child { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 
 /* Interacción y movimiento */
 a, button { touch-action: manipulation; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
-.character-card, .stats-grid article, .dashboard-panel { transition: transform var(--motion-base) var(--ease-out), border-color var(--motion-base) ease, background var(--motion-base) ease; }
-.character-card:hover, .dashboard-panel:hover { border-color: var(--gold-line); }
+.character-card, .stats-grid article, .dashboard-panel, .empty-characters { transition: transform var(--motion-base) var(--ease-out), border-color var(--motion-base) ease, background var(--motion-base) ease; }
+.character-card:hover, .dashboard-panel:hover, .empty-characters:hover { border-color: var(--gold-line); }
 .stats-grid article:hover { transform: translateY(-4px); border-color: var(--gold-line); background: var(--panel-light); }
 .quest-item { transition: background var(--motion-fast) ease, transform var(--motion-fast) ease; }
 .quest-item:hover { transform: translateX(4px); background: rgba(212,168,64,.035); }
